@@ -1,5 +1,5 @@
 // Build script for Terrain Control releases
-// This script simply packs together the Bukkit and Forge jars
+// This script simply packs together the Bukkit, Sponge, and Forge jars
 
 import java.util.zip.*;
 
@@ -50,6 +50,7 @@ task createReleaseJar <<
 {
     File forgeFile = getJarFile(project(":platforms:forge"))
     File bukkitFile = getJarFile(project(":platforms:bukkit"))
+    File spongeFile = getJarFile(project(":platforms:sponge"))
     File ourFile = getJarFile(project)
 
     if (forgeFile.exists() && bukkitFile.exists())
@@ -64,8 +65,9 @@ task createReleaseJar <<
         outputStream.close()
     } else
     {
-        println(" Skipping the release jar, as the Bukkit or Forge file failed")
+        println(" Skipping the release jar, as the Bukkit, Sponge, or Forge file failed")
 		println(" Forge exists: " + forgeFile.exists())
 		println(" Bukkit exists: " + bukkitFile.exists())
+        println(" Sponge exists: " + spongeFile.exists())
     }
 }
